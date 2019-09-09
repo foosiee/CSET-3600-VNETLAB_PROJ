@@ -123,7 +123,6 @@ public class Window extends JPanel implements ListSelectionListener
         }
     }
 
-   
     /** Returns an ImageIcon, or null if the path was invalid. */
     protected static ImageIcon createImageIcon(String path)
     {
