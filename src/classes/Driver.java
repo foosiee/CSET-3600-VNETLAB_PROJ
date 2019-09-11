@@ -9,7 +9,7 @@ public class Driver
         javax.swing.SwingUtilities.invokeLater(new Runnable() 
         {
             public void run() {
-                Window.createAndShow();
+                Window.createAndShow(); 
             }
         });
     }

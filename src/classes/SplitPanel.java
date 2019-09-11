@@ -41,28 +41,31 @@ import java.util.*;
 import java.net.URI;
 import java.net.URL;
 
-public class SplitPanel extends JPanel implements ListSelectionListener, MouseMotionListener
+import java.util.Random;
+
+public class SplitPanel extends JPanel implements ActionListener
 {
-    private Device device;
+    //private Device device;
+    private ArrayList<JButton> buttons = new ArrayList<JButton>();
     private JList list;
     private JSplitPane pane;
     private String[] deviceNames = {"Router", "Virtual Machine"};
+    private JScrollPane deviceScrollPane;
+
+    private Random rand = new Random();
 
     public SplitPanel()
     {
-        list = new JList(deviceNames);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setSelectedIndex(0);
-        list.addListSelectionListener(this);
-        
-        JScrollPane listScrollPane = new JScrollPane(list);
-        device = new Device();
-        device.setFont(device.getFont().deriveFont(Font.ITALIC));
-        device.setHorizontalAlignment(JLabel.CENTER);
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
-        JScrollPane deviceScrollPane = new JScrollPane();
+        createButtons();
+        addButtons(panel);
+
+        JScrollPane listScrollPane = new JScrollPane(panel);
+
+        deviceScrollPane = new JScrollPane();
         deviceScrollPane.setLayout(null);
-        deviceScrollPane.add(device);
 
         pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                                   listScrollPane, deviceScrollPane);
@@ -74,13 +77,33 @@ public class SplitPanel extends JPanel implements ListSelectionListener, MouseMo
         deviceScrollPane.setMinimumSize(minimumSize);
 
         pane.setPreferredSize(new Dimension(800, 400));
-        updateLabel(deviceNames[list.getSelectedIndex()]);
     }
 
     public void valueChanged(ListSelectionEvent e) 
     {
         JList list = (JList)e.getSource();
-        updateLabel(deviceNames[list.getSelectedIndex()]);
+        String selection = deviceNames[list.getSelectedIndex()];
+        System.out.println(selection);
+        Device device = new Device(selection);
+        device.setBounds(rand.nextInt(300), rand.nextInt(300), 50, 50);
+        deviceScrollPane.add(device);
+        deviceScrollPane.repaint();
+        //updateLabel(deviceNames[list.getSelectedIndex()]);
+    }
+
+    public void actionPerformed(ActionEvent e)
+    {
+        // display/center the jdialog when the button is pressed
+        // JDialog d = new JDialog(deviceScrollPane, "Hello", true);
+        // d.setLocationRelativeTo(deviceScrollPane);
+        // d.setVisible(true);
+
+        JButton sourceBtn = (JButton)e.getSource();
+        String name = sourceBtn.getName();
+        Device device = new Device(name);
+        device.setBounds(rand.nextInt(300), rand.nextInt(300), 50, 50);
+        deviceScrollPane.add(device);
+        deviceScrollPane.repaint();
     }
 
     protected void updateLabel (String name)
@@ -94,6 +117,26 @@ public class SplitPanel extends JPanel implements ListSelectionListener, MouseMo
             device.setBounds(150,100, 100, 100);
         }
         device.updateLabel(name);
+    }
+
+    private void createButtons()
+    {
+        JButton btn;
+        for(String b : deviceNames)
+        {
+            btn = new JButton(b);
+            btn.setName(b);
+            btn.addActionListener(this);
+            buttons.add(btn);
+        }
+    }
+
+    private void addButtons(JPanel panel)
+    {
+        for(JButton btn : buttons)
+        {
+            panel.add(btn);
+        }
     }
 
     public JSplitPane getSplitPane()

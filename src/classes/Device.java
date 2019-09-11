@@ -21,18 +21,22 @@ public class Device extends JLabel
         }
     };
 
-    public Device()
+    public Device(String name)
     {
-        
+        this.name = name;
+        this.setFont(this.getFont().deriveFont(Font.ITALIC));
+        this.setHorizontalAlignment(JLabel.CENTER);
+        getLabel();
     }
 
-    public void updateLabel(String name)
+    private void getLabel()
     {
-        name = getFileName(name);
+        name = getFileName();
         ImageIcon icon = createImageIcon("/src/assets/" + name + ".png");
         this.setIcon(icon);
         if (icon != null)
         {
+            System.out.println("Set icon");
             this.setText(null);
         } else 
         {
@@ -69,8 +73,8 @@ public class Device extends JLabel
         }
     }
 
-    private String getFileName(String objectName)
+    private String getFileName()
     {
-        return fileNames.get(objectName);
+        return fileNames.get(this.name);
     }
 }
