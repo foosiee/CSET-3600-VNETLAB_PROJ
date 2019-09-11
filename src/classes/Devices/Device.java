@@ -10,7 +10,7 @@ import java.util.*;
 import java.net.URI;
 import java.net.URL;
 
-public class Device extends JLabel
+public class Device extends JLabel implements MouseListener
 {
     private String name;
     private Map<String, String> fileNames = new HashMap<>()
@@ -24,9 +24,16 @@ public class Device extends JLabel
     public Device(String name)
     {
         this.name = name;
+        this.setName(name);
         this.setFont(this.getFont().deriveFont(Font.ITALIC));
         this.setHorizontalAlignment(JLabel.CENTER);
+        this.addMouseListener(this);
         getLabel();
+    }
+
+    public void mouseClicked(MouseEvent e)
+    {
+        System.out.println("Click");
     }
 
     private void getLabel()
@@ -75,5 +82,26 @@ public class Device extends JLabel
     private String getFileName()
     {
         return fileNames.get(this.name);
+    }
+
+    // interface forces to implement these
+    public void mouseEntered(MouseEvent e)
+    {
+
+    }
+
+    public void mouseExited(MouseEvent e)
+    {
+
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+
+    }
+
+    public void mousePressed(MouseEvent e)
+    {
+        
     }
 }
