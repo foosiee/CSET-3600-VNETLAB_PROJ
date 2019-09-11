@@ -1,5 +1,5 @@
 
-package classes;
+package classes.Devices;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;

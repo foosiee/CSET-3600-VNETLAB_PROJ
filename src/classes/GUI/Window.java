@@ -1,4 +1,4 @@
-package classes;
+package classes.GUI;
 
 import java.awt.*;
 import java.awt.event.*;
