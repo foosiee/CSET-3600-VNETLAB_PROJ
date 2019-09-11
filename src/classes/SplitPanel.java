@@ -47,7 +47,6 @@ public class SplitPanel extends JPanel implements ActionListener
 {
     //private Device device;
     private ArrayList<JButton> buttons = new ArrayList<JButton>();
-    private JList list;
     private JSplitPane pane;
     private String[] deviceNames = {"Router", "Virtual Machine"};
     private JScrollPane deviceScrollPane;
@@ -79,18 +78,6 @@ public class SplitPanel extends JPanel implements ActionListener
         pane.setPreferredSize(new Dimension(800, 400));
     }
 
-    public void valueChanged(ListSelectionEvent e) 
-    {
-        JList list = (JList)e.getSource();
-        String selection = deviceNames[list.getSelectedIndex()];
-        System.out.println(selection);
-        Device device = new Device(selection);
-        device.setBounds(rand.nextInt(300), rand.nextInt(300), 50, 50);
-        deviceScrollPane.add(device);
-        deviceScrollPane.repaint();
-        //updateLabel(deviceNames[list.getSelectedIndex()]);
-    }
-
     public void actionPerformed(ActionEvent e)
     {
         // display/center the jdialog when the button is pressed
@@ -104,19 +91,6 @@ public class SplitPanel extends JPanel implements ActionListener
         device.setBounds(rand.nextInt(300), rand.nextInt(300), 50, 50);
         deviceScrollPane.add(device);
         deviceScrollPane.repaint();
-    }
-
-    protected void updateLabel (String name)
-    {
-        if(name == "Router")
-        {
-            device.setBounds(0, 50, 100, 100);
-        }
-        else
-        {
-            device.setBounds(150,100, 100, 100);
-        }
-        device.updateLabel(name);
     }
 
     private void createButtons()
