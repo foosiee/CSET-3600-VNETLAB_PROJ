@@ -36,7 +36,6 @@ public class Device extends JLabel
         this.setIcon(icon);
         if (icon != null)
         {
-            System.out.println("Set icon");
             this.setText(null);
         } else 
         {

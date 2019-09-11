@@ -1,6 +1,6 @@
 package classes;
 
-public class Driver
+public class VNETLAB
 {
     public static void main(String[] args) 
     {
