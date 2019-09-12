@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - VNETLAB",
+      "request": "launch",
+      "mainClass": "classes.Driver.VNETLAB"
+    }
+  ]
+}
