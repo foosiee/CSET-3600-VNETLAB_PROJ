@@ -55,6 +55,11 @@ public abstract class GenericEditorPopup extends JOptionPane
         return map;
     }
 
+    public void setPropsObject(Object[] props)
+    {
+        this.props = props;
+    }
+
     public Object[] getPropsObject()
     {
         return this.props;
