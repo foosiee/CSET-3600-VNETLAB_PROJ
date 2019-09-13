@@ -1,6 +1,8 @@
 package classes.GUI;
 
 import classes.Devices.*;
+import classes.Exceptions.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -95,14 +97,23 @@ public class SplitPanel extends JPanel implements ActionListener
 
         JButton sourceBtn = (JButton)e.getSource();
         String name = sourceBtn.getName();
-        DeviceEditorPopupFactory factory = new DeviceEditorPopupFactory();
-        JOptionPane p = factory.create(name);
-        JDialog d = p.createDialog("Set Props");
-        d.setVisible(true);
-        Device device = new Device(name);
-        device.setBounds(rand.nextInt(300), rand.nextInt(300), 50, 50);
-        deviceScrollPane.add(device);
-        deviceScrollPane.repaint();
+        // DeviceEditorPopupFactory factory = new DeviceEditorPopupFactory();
+        // JOptionPane p = factory.create(name);
+
+        // Device device = new Device(name);
+        DeviceFactory factory = new DeviceFactory();
+        Device device = null;
+        try
+        {
+            device = factory.create(name);
+            device.setBounds(rand.nextInt(300), rand.nextInt(300), 50, 50);
+            deviceScrollPane.add(device);
+            deviceScrollPane.repaint();
+        }
+        catch(PaneCancelledException ex)
+        {
+            System.out.print("ex");
+        }
     }
 
     private void createButtons()

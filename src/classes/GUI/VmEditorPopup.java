@@ -5,19 +5,25 @@ import javax.swing.JTextField;
 
 public class VmEditorPopup extends GenericEditorPopup
 {
-    protected JTextField ipAdd = new JTextField();
-    protected JTextField os = new JTextField();
+    public JTextField ipAdd = new JTextField();
+    public JTextField os = new JTextField();
 
     public VmEditorPopup()
     {
         super();
         this.setProps();
+        //this.showPopup();
+    }
+
+    public VmEditorPopup(Object[] props)
+    {
+        super("vm", props);
     }
 
     protected void setProps()
     {
         this.props = new Object[]{
-            "IP address:", this.ipAdd,
+            "IP:", this.ipAdd,
             "OS", this.os,
             "Name", this.name
         };

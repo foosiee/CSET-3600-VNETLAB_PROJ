@@ -2,9 +2,11 @@ package classes.GUI;
 
 import javax.swing.JOptionPane;
 
+import classes.Exceptions.PaneCancelledException;
+
 public class DeviceEditorPopupFactory
 { 
-    public JOptionPane create(String objectName)
+    public GenericEditorPopup create(String objectName)
     {
         if(objectName == "Router")
         {
@@ -13,6 +15,18 @@ public class DeviceEditorPopupFactory
         else
         {
             return new VmEditorPopup();
+        }
+    }
+
+    public GenericEditorPopup create(String objectName, Object[] props)
+    {
+        if(objectName == "Router")
+        {
+            return new RouterEditorPopup(props);
+        }
+        else
+        {
+            return new VmEditorPopup(props);
         }
     }
 }
