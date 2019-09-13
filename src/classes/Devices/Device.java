@@ -22,13 +22,6 @@ public abstract class Device extends JLabel implements MouseListener
     protected String type;
     protected GenericEditorPopup pane;
     protected HashMap<String, String> props;
-    private Map<String, String> fileNames = new HashMap<>()
-    {
-        {
-            put("Virtual Machine", "vm");
-            put("Router", "router");
-        }
-    };
 
     public Device() throws PaneCancelledException
     {
@@ -201,11 +194,6 @@ public abstract class Device extends JLabel implements MouseListener
             System.err.println("Couldn't find file: " + path);
             return null;
         }
-    }
-
-    private String getFileName()
-    {
-        return fileNames.get(this.name);
     }
 
     // interface forces to implement these
