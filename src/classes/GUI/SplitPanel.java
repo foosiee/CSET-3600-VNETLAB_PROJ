@@ -22,9 +22,7 @@ public class SplitPanel extends JPanel implements ActionListener
     private JSplitPane pane;
     private String[] deviceNames = {"Router", "Virtual Machine"};
     private JScrollPane deviceScrollPane;
-
-    private Random rand = new Random();
-
+    
     public SplitPanel()
     {
         JPanel panel = new JPanel();
@@ -53,16 +51,12 @@ public class SplitPanel extends JPanel implements ActionListener
     {
         JButton sourceBtn = (JButton)e.getSource();
         String name = sourceBtn.getName();
-        // DeviceEditorPopupFactory factory = new DeviceEditorPopupFactory();
-        // JOptionPane p = factory.create(name);
 
-        // Device device = new Device(name);
         DeviceFactory factory = new DeviceFactory();
         Device device = null;
         try
         {
             device = factory.create(name);
-            device.setBounds(rand.nextInt(300), rand.nextInt(300), 50, 50);
             deviceScrollPane.add(device);
             deviceScrollPane.repaint();
         }

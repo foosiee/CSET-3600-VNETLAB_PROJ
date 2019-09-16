@@ -16,12 +16,15 @@ import java.util.*;
 import java.net.URI;
 import java.net.URL;
 
-public abstract class Device extends JLabel implements MouseListener
+import java.util.Random;
+public abstract class Device extends JLabel implements MouseListener, MouseMotionListener
 {
     protected String name;
     protected String type;
     protected GenericEditorPopup pane;
     protected HashMap<String, String> props;
+
+    private int size = 50;
 
     public Device() throws PaneCancelledException
     {
@@ -41,7 +44,11 @@ public abstract class Device extends JLabel implements MouseListener
         this.setFont(this.getFont().deriveFont(Font.ITALIC));
         this.setHorizontalAlignment(JLabel.CENTER);
         this.addMouseListener(this);
+        this.addMouseMotionListener(this);
         this.getLabel();
+
+        Random rand = new Random();
+        this.setBounds(rand.nextInt(300), rand.nextInt(300), size, size);
     }
 
     public void mouseClicked(MouseEvent e)
@@ -65,6 +72,12 @@ public abstract class Device extends JLabel implements MouseListener
             this.pane.setPropsObject(objList);
         }
         this.setPanePropsToDevice();
+    }
+
+    public void mouseDragged(MouseEvent e)
+    {
+        JComponent jc = (JComponent)e.getSource();
+        jc.setLocation(jc.getX()-size/2+e.getX(), jc.getY()-size/2+e.getY());
     }
 
     protected abstract void showDeviceProps();
@@ -214,6 +227,6 @@ public abstract class Device extends JLabel implements MouseListener
 
     public void mousePressed(MouseEvent e)
     {
-        
+
     }
 }
