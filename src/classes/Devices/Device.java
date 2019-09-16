@@ -53,25 +53,28 @@ public abstract class Device extends JLabel implements MouseListener, MouseMotio
 
     public void mouseClicked(MouseEvent e)
     {
-        ArrayList<String> stringPropList = this.getStringPropList();
-
-        Object[] p = this.pane.getPropsObject();
-        GenericEditorPopup edit = this.getOptionPane(p);
-        this.showPane(edit);
-
-        String input = (String)edit.getValue();
-        if(input == "Edit")
+        if(SwingUtilities.isRightMouseButton(e))
         {
-            this.pane = edit;
-            this.getPaneProps();
+            ArrayList<String> stringPropList = this.getStringPropList();
+
+            Object[] p = this.pane.getPropsObject();
+            GenericEditorPopup edit = this.getOptionPane(p);
+            this.showPane(edit);
+    
+            String input = (String)edit.getValue();
+            if(input == "Edit")
+            {
+                this.pane = edit;
+                this.getPaneProps();
+                this.setPanePropsToDevice();
+            }
+            else
+            {
+                Object[] objList = this.propListToObject(stringPropList);
+                this.pane.setPropsObject(objList);
+            }
             this.setPanePropsToDevice();
         }
-        else
-        {
-            Object[] objList = this.propListToObject(stringPropList);
-            this.pane.setPropsObject(objList);
-        }
-        this.setPanePropsToDevice();
     }
 
     public void mouseDragged(MouseEvent e)
