@@ -34,7 +34,6 @@ public class SplitPanel extends JPanel implements ActionListener
         addButtons(panel);
 
         JScrollPane listScrollPane = new JScrollPane(panel);
-
         deviceScrollPane = new JScrollPane();
         deviceScrollPane.setLayout(null);
 
@@ -52,49 +51,6 @@ public class SplitPanel extends JPanel implements ActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        // display/center the jdialog when the button is pressed
-        // JDialog d = new JDialog(deviceScrollPane, "Hello", true);
-        // d.setLocationRelativeTo(deviceScrollPane);
-        // d.setVisible(true);
-        // JTextField username = new JTextField();
-        // JTextField password = new JPasswordField();
-        // JTextField objName = new JTextField();
-        // Object[] message = {
-        //     "IP address:", username,
-        //     "Subnet", password,
-        //     "Name", objName
-        // };
-
-        // String[] options = new String[2];
-        // options[1] = "Cancel";
-        // options[0] = "Create";
-        
-        // JOptionPane op = new JOptionPane();
-        // op.setMessage(message);
-        // op.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-        // op.setOptions(options);
-        // JDialog d = op.createDialog("Set Props");
-        // d.setVisible(true);
-        // Object input = op.getValue();
-        // // int option = JOptionPane.showOptionDialog(null, message, "Set Props", 0, JOptionPane.INFORMATION_MESSAGE, null, options, null);
-        // if(input != null)
-        // {
-        //     String x = input.toString();
-        //     if(x == options[0])
-        //     {
-        //         System.out.println("Object created");
-    
-        //     }
-        //     else
-        //     {
-        //         System.out.println("Cancelled");
-        //     }
-        // }
-        // else
-        // {
-        //     System.out.println("Xed out");
-        // }
-
         JButton sourceBtn = (JButton)e.getSource();
         String name = sourceBtn.getName();
         // DeviceEditorPopupFactory factory = new DeviceEditorPopupFactory();
