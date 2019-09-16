@@ -39,16 +39,8 @@ public abstract class Device extends JLabel implements MouseListener, MouseMotio
         {
             throw new PaneCancelledException("Pane was cancelled");
         }
-        this.getPaneProps();
-        this.setPanePropsToDevice();
-        this.setFont(this.getFont().deriveFont(Font.ITALIC));
-        this.setHorizontalAlignment(JLabel.CENTER);
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);
-        this.getLabel();
-
-        Random rand = new Random();
-        this.setBounds(rand.nextInt(300), rand.nextInt(300), size, size);
+        
+        this.setDeviceProps();
     }
 
     public void mouseClicked(MouseEvent e)
@@ -210,6 +202,20 @@ public abstract class Device extends JLabel implements MouseListener, MouseMotio
             System.err.println("Couldn't find file: " + path);
             return null;
         }
+    }
+
+    private void setDeviceProps()
+    {
+        this.getPaneProps();
+        this.setPanePropsToDevice();
+        this.setFont(this.getFont().deriveFont(Font.ITALIC));
+        this.setHorizontalAlignment(JLabel.CENTER);
+        this.addMouseListener(this);
+        this.addMouseMotionListener(this);
+        this.getLabel();
+
+        Random rand = new Random();
+        this.setBounds(rand.nextInt(300), rand.nextInt(300), size, size);
     }
 
     // interface forces to implement these
