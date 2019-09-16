@@ -238,4 +238,9 @@ public abstract class Device extends JLabel implements MouseListener, MouseMotio
     {
 
     }
+
+    public void mouseMoved(MouseEvent e)
+    {
+        
+    }
 }
