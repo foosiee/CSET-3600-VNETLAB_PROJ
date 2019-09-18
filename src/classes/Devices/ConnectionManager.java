@@ -11,7 +11,7 @@ public class ConnectionManager
     private JToggleButton btn;
     private ArrayList<Connection> connections = new ArrayList<>();
 
-    public ConnectionManager(JToggleButton btn, JScrollPane canvas)
+    public ConnectionManager(JToggleButton btn)
     {
         this.btn = btn;
     }
