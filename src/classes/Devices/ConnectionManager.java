@@ -9,8 +9,9 @@ public class ConnectionManager
     private Boolean active = false;
     private ArrayList<Device> selectedDevices;
     private JToggleButton btn;
+    private ArrayList<Connection> connections = new ArrayList<>();
 
-    public ConnectionManager(JToggleButton btn)
+    public ConnectionManager(JToggleButton btn, JScrollPane canvas)
     {
         this.btn = btn;
     }
@@ -47,6 +48,7 @@ public class ConnectionManager
     private void createConnection()
     {
         Connection c = new Connection(this.selectedDevices.get(0), this.selectedDevices.get(1));
+        this.connections.add(c);
         this.btn.doClick();
     }
 }

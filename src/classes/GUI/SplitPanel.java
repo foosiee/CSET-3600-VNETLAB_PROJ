@@ -51,8 +51,6 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
 
     public void actionPerformed(ActionEvent e)
     {
-        // System.out.println("Action");
-        // System.out.println(e.getSource());
         AbstractButton sourceBtn = (AbstractButton)e.getSource();
         String name = sourceBtn.getText();
 
@@ -74,7 +72,7 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
             try
             {
                 device = factory.create(name);
-                device.manager = this.manager;
+                device.setManager(this.manager);
                 deviceScrollPane.add(device);
                 deviceScrollPane.repaint();
             }
