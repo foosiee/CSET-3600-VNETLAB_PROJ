@@ -21,9 +21,9 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
     private ArrayList<JButton> buttons = new ArrayList<JButton>();
     private JSplitPane pane;
     private String[] deviceNames = {"Router", "Virtual Machine"};
-    private DeviceCanvas deviceScrollPane;
+    private DeviceCanvas deviceScrollPane = new DeviceCanvas();
     private JToggleButton toggleButton;
-    private ConnectionManager manager;
+    private DeviceManager manager;
     
     public SplitPanel()
     {
@@ -34,7 +34,6 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
         addButtons(panel);
 
         JScrollPane listScrollPane = new JScrollPane(panel);
-        deviceScrollPane = new DeviceCanvas();
         deviceScrollPane.setLayout(null);
 
         pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
@@ -58,11 +57,11 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
         {
             if(toggleButton.isSelected())
             {
-                manager.activate();
+                manager.activateConnection();
             }
             else
             {
-                manager.deactivate();
+                manager.deactivateConnection();
             }
         }
         else
@@ -104,7 +103,7 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
 
         toggleButton = new JToggleButton("Connection");
         toggleButton.addActionListener(this);
-        manager = new ConnectionManager(toggleButton);
+        manager = new DeviceManager(toggleButton, deviceScrollPane);
         panel.add(toggleButton);
     }
 

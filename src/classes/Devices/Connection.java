@@ -2,12 +2,22 @@ package classes.Devices;
 
 public class Connection
 {
-    private Device a;
-    private Device b;
+    private Device one;
+    private Device two;
 
     public Connection(Device a, Device b)
     {
-        this.a = a;
-        this.b = b;
+        this.one = a;
+        this.two = b;
+    }
+
+    public Device getDeviceOne()
+    {
+        return this.one;
+    }
+
+    public Device getDeviceTwo()
+    {
+        return this.two;
     }
 }

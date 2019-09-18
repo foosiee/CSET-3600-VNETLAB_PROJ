@@ -24,7 +24,7 @@ public abstract class Device extends JLabel implements MouseListener, MouseMotio
     protected GenericEditorPopup pane;
     protected HashMap<String, String> props;
 
-    private ConnectionManager manager;
+    private DeviceManager manager;
     private int size = 50;
 
     public Device() throws PaneCancelledException
@@ -78,9 +78,10 @@ public abstract class Device extends JLabel implements MouseListener, MouseMotio
     {
         JComponent jc = (JComponent)e.getSource();
         jc.setLocation(jc.getX()-size/2+e.getX(), jc.getY()-size/2+e.getY());
+        this.manager.repaintCanvas();
     }
 
-    public void setManager(ConnectionManager m)
+    public void setManager(DeviceManager m)
     {
         this.manager = m;
     }

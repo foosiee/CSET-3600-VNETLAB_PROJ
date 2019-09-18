@@ -1,28 +1,31 @@
 package classes.Devices;
 
+import classes.GUI.*;
 import java.util.ArrayList;
 
 import javax.swing.JToggleButton;
 
-public class ConnectionManager
+public class DeviceManager
 {
     private Boolean active = false;
     private ArrayList<Device> selectedDevices;
     private JToggleButton btn;
     private ArrayList<Connection> connections = new ArrayList<>();
+    private DeviceCanvas canvas;
 
-    public ConnectionManager(JToggleButton btn)
+    public DeviceManager(JToggleButton btn, DeviceCanvas canvas)
     {
         this.btn = btn;
+        this.canvas = canvas;
     }
 
-    public void activate()
+    public void activateConnection()
     {
         this.active = true;
         selectedDevices = new ArrayList<>();
     }
 
-    public void deactivate()
+    public void deactivateConnection()
     {
         this.active = false;
         selectedDevices = null;
@@ -49,6 +52,12 @@ public class ConnectionManager
     {
         Connection c = new Connection(this.selectedDevices.get(0), this.selectedDevices.get(1));
         this.connections.add(c);
+        this.canvas.addConnection(c);
         this.btn.doClick();
+    }
+
+    public void repaintCanvas()
+    {
+        this.canvas.repaint();
     }
 }
