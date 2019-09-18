@@ -15,13 +15,15 @@ import java.net.URL;
 
 import java.util.Random;
 
-public class SplitPanel extends JPanel implements ActionListener
+public class SplitPanel extends JPanel implements ActionListener//, ChangeListener
 {
     //private Device device;
     private ArrayList<JButton> buttons = new ArrayList<JButton>();
     private JSplitPane pane;
     private String[] deviceNames = {"Router", "Virtual Machine"};
     private JScrollPane deviceScrollPane;
+    private JToggleButton toggleButton;
+    private ConnectionManager manager;
     
     public SplitPanel()
     {
@@ -49,20 +51,37 @@ public class SplitPanel extends JPanel implements ActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        JButton sourceBtn = (JButton)e.getSource();
-        String name = sourceBtn.getName();
+        // System.out.println("Action");
+        // System.out.println(e.getSource());
+        AbstractButton sourceBtn = (AbstractButton)e.getSource();
+        String name = sourceBtn.getText();
 
-        DeviceFactory factory = new DeviceFactory();
-        Device device = null;
-        try
+        if(name == "Connection")
         {
-            device = factory.create(name);
-            deviceScrollPane.add(device);
-            deviceScrollPane.repaint();
+            if(toggleButton.isSelected())
+            {
+                manager.activate();
+            }
+            else
+            {
+                manager.deactivate();
+            }
         }
-        catch(PaneCancelledException ex)
+        else
         {
-            System.out.print("ex");
+            DeviceFactory factory = new DeviceFactory();
+            Device device = null;
+            try
+            {
+                device = factory.create(name);
+                device.manager = this.manager;
+                deviceScrollPane.add(device);
+                deviceScrollPane.repaint();
+            }
+            catch(PaneCancelledException ex)
+            {
+                System.out.print("ex");
+            }
         }
     }
 
@@ -84,6 +103,11 @@ public class SplitPanel extends JPanel implements ActionListener
         {
             panel.add(btn);
         }
+
+        toggleButton = new JToggleButton("Connection");
+        toggleButton.addActionListener(this);
+        manager = new ConnectionManager(toggleButton);
+        panel.add(toggleButton);
     }
 
     public JSplitPane getSplitPane()
