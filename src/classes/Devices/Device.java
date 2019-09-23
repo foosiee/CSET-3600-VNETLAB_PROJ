@@ -70,7 +70,7 @@ public abstract class Device extends JLabel implements MouseListener, MouseMotio
         }
         else
         {
-            manager.add(this);
+            manager.addDeviceForConnection(this);
         }
     }
 
@@ -84,6 +84,11 @@ public abstract class Device extends JLabel implements MouseListener, MouseMotio
     public void setManager(DeviceManager m)
     {
         this.manager = m;
+    }
+
+    public String getDeviceType()
+    {
+        return this.type;
     }
 
     protected abstract void showDeviceProps();

@@ -9,6 +9,7 @@ public class DeviceManager
 {
     private Boolean active = false;
     private ArrayList<Device> selectedDevices;
+    private ArrayList<Device> allDevices = new ArrayList<>();
     private JToggleButton btn;
     private ArrayList<Connection> connections = new ArrayList<>();
     private DeviceCanvas canvas;
@@ -22,21 +23,21 @@ public class DeviceManager
     public void activateConnection()
     {
         this.active = true;
-        selectedDevices = new ArrayList<>();
+        this.selectedDevices = new ArrayList<>();
     }
 
     public void deactivateConnection()
     {
         this.active = false;
-        selectedDevices = null;
+        this.selectedDevices = null;
     }
 
-    public void add(Device d)
+    public void addDeviceForConnection(Device d)
     {
         if(this.active && !selectedDevices.contains(d) && selectedDevices.size() < 2)
         {
-            selectedDevices.add(d);
-            if(selectedDevices.size() == 2)
+            this.selectedDevices.add(d);
+            if(this.selectedDevices.size() == 2)
             {
                 this.createConnection();
             }
@@ -48,16 +49,34 @@ public class DeviceManager
         return this.active;
     }
 
+    public void repaintCanvas()
+    {
+        this.canvas.repaint();
+    }
+
+    public void add(Device d)
+    {
+        this.allDevices.add(d);
+        d.setManager(this);
+    }
+
+
     private void createConnection()
     {
-        Connection c = new Connection(this.selectedDevices.get(0), this.selectedDevices.get(1));
+        Device a = this.selectedDevices.get(0);
+        Device b = this.selectedDevices.get(1);
+        this.connectionRules(a, b);
+        Connection c = new Connection(a,b);
         this.connections.add(c);
         this.canvas.addConnection(c);
         this.btn.doClick();
     }
 
-    public void repaintCanvas()
+    private void connectionRules(Device a, Device b)
     {
-        this.canvas.repaint();
+        if(a.getDeviceType() == "VM" && b.getDeviceType() == "VM")
+        {
+            System.out.println("VMs can't connect to each other");
+        }
     }
 }

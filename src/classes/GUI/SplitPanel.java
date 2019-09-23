@@ -71,7 +71,7 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
             try
             {
                 device = factory.create(name);
-                device.setManager(this.manager);
+                this.manager.add(device);
                 deviceScrollPane.add(device);
                 deviceScrollPane.repaint();
             }
