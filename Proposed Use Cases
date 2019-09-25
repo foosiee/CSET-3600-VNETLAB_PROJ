@@ -1,0 +1,15 @@
+Proposed Use Cases:
+
+	Visually “drag and drop" devices. (Drag and Drop) 
+
+	Draw connections between devices (Connect Devices)
+
+	Specify the parameters. (Specify Device Parameters)
+
+	Users can save the network configuration. (Save GUI Config)
+
+	Open/continue working on the configuration. (Open GUI Config)
+
+	Check correctness of the network specifications. (Check GUI Network Config)
+
+	Save it into a configuration file (Save GUI network as .cfg)
