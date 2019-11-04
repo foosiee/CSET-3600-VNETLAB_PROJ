@@ -104,7 +104,13 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
         toggleButton = new JToggleButton("Connection");
         toggleButton.addActionListener(this);
         manager = new DeviceManager(toggleButton, deviceScrollPane);
+
+        var saveButton = new JButton("Save");
+        var loadButton = new JButton("Load");
+
         panel.add(toggleButton);
+        panel.add(saveButton);
+        panel.add(loadButton);
     }
 
     public JSplitPane getSplitPane()
