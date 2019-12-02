@@ -71,6 +71,10 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
             ArrayList<Device> devices = manager.getDevices();
             saver.save(devices);
         }
+        else if(name == "Load")
+        {
+            
+        }
         else
         {
             DeviceFactory factory = new DeviceFactory();
