@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import classes.Devices.*;
+import classes.GUI.Notification;
 
 public class Saver
 {
@@ -28,16 +29,16 @@ public class Saver
                 fileText += handle(d, ipMap);
             }
         }
-        
+
         try
         {
             write(fileText);
+            Notification.showNotification("Saved file!");
         }
         catch(Exception IOException)
         {
-
+            Notification.showNotification("Error saving file!");
         }
-        // Write file text to a file
     }
 
     private String handle(Device d, HashMap<String, String> ipMap)
