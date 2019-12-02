@@ -60,6 +60,10 @@ public class DeviceManager
         d.setManager(this);
     }
 
+    public ArrayList<Device> getDevices()
+    {
+        return allDevices;
+    }
 
     private void createConnection()
     {

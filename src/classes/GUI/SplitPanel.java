@@ -2,6 +2,7 @@ package classes.GUI;
 
 import classes.Devices.*;
 import classes.Exceptions.*;
+import classes.Utils.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -24,6 +25,7 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
     private DeviceCanvas deviceScrollPane = new DeviceCanvas();
     private JToggleButton toggleButton;
     private DeviceManager manager;
+    private Saver saver = new Saver();
     
     public SplitPanel()
     {
@@ -63,6 +65,11 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
             {
                 manager.deactivateConnection();
             }
+        }
+        else if(name == "Save")
+        {
+            ArrayList<Device> devices = manager.getDevices();
+            saver.save(devices);
         }
         else
         {
@@ -105,8 +112,11 @@ public class SplitPanel extends JPanel implements ActionListener//, ChangeListen
         toggleButton.addActionListener(this);
         manager = new DeviceManager(toggleButton, deviceScrollPane);
 
-        var saveButton = new JButton("Save");
-        var loadButton = new JButton("Load");
+        JButton saveButton = new JButton("Save");
+        JButton loadButton = new JButton("Load");
+
+        saveButton.addActionListener(this);
+        loadButton.addActionListener(this);
 
         panel.add(toggleButton);
         panel.add(saveButton);
