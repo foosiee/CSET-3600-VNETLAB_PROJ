@@ -70,6 +70,10 @@ public class DeviceManager
         Device a = this.selectedDevices.get(0);
         Device b = this.selectedDevices.get(1);
         this.connectionRules(a, b);
+
+        a.addConnectedDevice(b);
+        b.addConnectedDevice(a);
+
         Connection c = new Connection(a,b);
         this.connections.add(c);
         this.canvas.addConnection(c);

@@ -23,7 +23,7 @@ public abstract class Device extends JLabel implements MouseListener, MouseMotio
     protected String type;
     protected GenericEditorPopup pane;
     protected HashMap<String, String> props;
-
+    protected ArrayList<Device> connectedDevices = new ArrayList<>();
     private DeviceManager manager;
     private int size = 50;
 
@@ -42,6 +42,11 @@ public abstract class Device extends JLabel implements MouseListener, MouseMotio
         }
         
         this.setDeviceProps();
+    }
+
+    public HashMap<String, String> getProps()
+    {
+        return this.props;
     }
 
     public void mouseClicked(MouseEvent e)
@@ -89,6 +94,21 @@ public abstract class Device extends JLabel implements MouseListener, MouseMotio
     public String getDeviceType()
     {
         return this.type;
+    }
+
+    public String getDeviceName()
+    {
+        return this.name;
+    }
+
+    public void addConnectedDevice(Device d)
+    {
+        this.connectedDevices.add(d);
+    }
+
+    public ArrayList<Device> getConnectedDevices()
+    {
+        return this.connectedDevices;
     }
 
     protected abstract void showDeviceProps();

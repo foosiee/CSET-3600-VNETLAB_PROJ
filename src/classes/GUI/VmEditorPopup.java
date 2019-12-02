@@ -23,7 +23,7 @@ public class VmEditorPopup extends GenericEditorPopup
     protected void setProps()
     {
         this.props = new Object[]{
-            "IP:", this.ipAdd,
+            "IP", this.ipAdd,
             "OS", this.os,
             "Name", this.name
         };
