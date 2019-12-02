@@ -9,10 +9,12 @@ public class Saver
 {
     public void save(ArrayList<Device> devices)
     {
+        String fileText = "";
         for(Device d : devices)
         {
-            System.out.println(d.getDeviceType());
+            fileText += handle(d);
         }
+        // Write file text to a file
     }
 
     private String handle(Device d)
