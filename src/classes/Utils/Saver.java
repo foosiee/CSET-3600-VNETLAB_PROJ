@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import classes.Devices.*;
 import classes.GUI.Notification;
+import java.awt.Desktop;
+import java.io.File;
 
 public class Saver
 {
@@ -34,6 +36,7 @@ public class Saver
         {
             write(fileText);
             Notification.showNotification("Saved file!");
+            open();
         }
         catch(Exception IOException)
         {
@@ -98,5 +101,23 @@ public class Saver
         BufferedWriter writer = new BufferedWriter(new FileWriter(path));
         writer.write(content);
         writer.close();
+    }
+
+    private void open() throws IOException
+    {
+        String dirName = System.getProperty("user.dir");
+        String path = dirName + "/save.cfg";
+        
+        //first check if Desktop is supported by Platform or not
+        if(!Desktop.isDesktopSupported()){
+            System.out.println("Desktop is not supported");
+            return;
+        }
+        
+        Desktop desktop = Desktop.getDesktop();
+
+        //let's try to open PDF file
+        File file = new File(path);
+        if(file.exists()) desktop.open(file);
     }
 }
